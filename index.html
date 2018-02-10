@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- STYLES FOR QUIZ APPLICATION -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- END -->
+</head>
+
+<body style="margin: 0">
+    <!-- CODE OF QUIZ APPLICATION STARTS HERE -->
+    <div id="vue-app">
+        <todo-component></todo-component>
+    </div>
+    <script type="x-template" id="todo-component">
+        <div v-if="this.view == 'gra'">
+            <div class="question">
+                <img class="question" src="" id="qimage" v-bind:src="'quiz_img/' + qimage">
+                <div class="textquestion" id="qtext"><div>{{ qtext }}</div></div>
+            </div>
+            <div class="answers">
+                <div class="answer" id="answer1" @mouseover="$event.target.classList.add('mouseover')" @mouseleave="$event.target.classList.remove('mouseover')" v-on:click="next(0)" v-bind:style="{ 'background-image': 'url(quiz_img/' + answers[0].image + ')' }">{{ answers[0].text }}</div>
+                <div class="answer" id="answer2" @mouseover="$event.target.classList.add('mouseover')" @mouseleave="$event.target.classList.remove('mouseover')" v-on:click="next(1)" v-bind:style="{ 'background-image': 'url(quiz_img/' + answers[1].image + ')' }">{{ answers[1].text }}</div>
+                <div class="answer" id="answer3" @mouseover="$event.target.classList.add('mouseover')" @mouseleave="$event.target.classList.remove('mouseover')" v-on:click="next(2)" v-bind:style="{ 'background-image': 'url(quiz_img/' + answers[2].image + ')' }">{{ answers[2].text }}</div>
+            </div>
+        </div>
+        <div v-else-if="this.view == 'koniec'" class="finish">
+            <p class="quiz-text-cent">
+                Gra została ukończona!
+            </p>
+            <p class="quiz-text-cent">
+                Twój wynik to {{ this.last_score }}
+            </p>
+            <div>
+                <img class="question banner" src="" v-bind:src="'quiz_img/' + this.banner">
+            </div>
+            <div class="button">
+                <button id="nowy" type="button" v-on:click="changeBanner(); nextSet();" @mouseover="$event.target.classList.add('mouseover')" @mouseleave="$event.target.classList.remove('mouseover')">NOWY QUIZ</button>
+            </div>
+            <p></p>
+            <div class="button" v-if="this.show_results == false">
+                <button id="pokaz" type="button" v-on:click="show_results = true" @mouseover="$event.target.classList.add('mouseover')" @mouseleave="$event.target.classList.remove('mouseover')">POKAŻ ODPOWIEDZI</button>
+            </div>
+            <div v-else>
+                <div class="check" v-for="res in results" v-bind:style="[res.correct ? { 'background-color':'green' } : { 'background-color':'red' }]">
+                    <div v-if="res.correct == true"><img class="correct" src="quiz_img/smile-green.jpg">dobrze<img class="correct" src="quiz_img/smile-green.jpg"></div>
+                    <div v-else><img class="correct" src="quiz_img/smile-red.jpg">źle<img class="correct" src="quiz_img/smile-red.jpg"></div>
+                    <div class="question">
+                        <img class="question" src="" v-bind:src="'quiz_img/' + res.questionImage">
+                        <div class="textquestion" id="qtext"><div v-html="res.questionText"></div></div>
+                    </div>
+                    <div>Poprawna odpowiedź:</div>
+                    <div class="answer one-answer" v-bind:style="{ 'background-image': 'url(quiz_img/' + res.answerImage + ')' }">{{ res.answerText }}</div>
+                </div>
+                <div class="button">
+                    <button id="nowy" type="button" v-on:click="changeBanner(); nextSet();" @mouseover="$event.target.classList.add('mouseover')" @mouseleave="$event.target.classList.remove('mouseover')">NOWY QUIZ</button>
+                </div>
+            </div>
+        </div>
+        <div v-else-if="this.view == 'ladowanie'">
+            <div class="loading-image">
+                <img src="quiz_img/top.png" id="loading">
+            </div>
+            <div class="loading-text">
+                ŁADOWANIE
+            </div>
+        </div>
+        <div v-else="this.view == 'start'" class="start">
+            <div class="responsive-image">
+                <img src="quiz_img/QUIZ_logo.png">
+            </div>
+            <div class="quiz-text-just">
+                Zapraszamy zespoły do sprawdzenia wiedzy. Rozwiązanie zadań wymaga współpracy dzieci i&nbsp;dorosłych. Jedna runda to 10 pytań. Powodzenia!
+            </div>
+            <div class="quiz-text-just quiz-text-cent" v-if="this.last_score != ''">
+                Twój ostatni wynik to {{ this.last_score }}
+            </div>
+            <div class="button">
+                <button id="start" type="button" v-on:click="start()" @mouseover="$event.target.classList.add('mouseover')" @mouseleave="$event.target.classList.remove('mouseover')">ROZPOCZNIJ QUIZ</button>
+            </div>
+            <div class="quiz-text-just">
+                Rodzinny QUIZ Drogowy jest częścią działań edukacyjnych realizowanych w&nbsp;ramach ogólnopolskiego programu AUTOCHODZIK "Gotowi do drogi". Jego celem jest przygotowanie dzieci do samodzielności w&nbsp;ruchu drogowym.
+            </div>
+        </div>
+    </script>
+    <script src="jquery.min.js"></script>
+    <script src="jQueryRotate.js"></script>
+    <script src="vue.min.js"></script>
+    <script src="quiz_database.js"></script>
+    <script src="scriptvue.js"></script>
+    <!-- CODE OF QUIZ APPLICATION ENDS HERE -->
+</body>
+
+</html>

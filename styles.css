@@ -1,0 +1,185 @@
+@font-face {
+    font-family: taho;
+    src: url(tahoma-webfont.woff);
+}
+
+div#vue-app {
+    background-color: #ffffff;
+    font-family: tahoma, ubuntu, taho;
+    max-width: 800px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+div.quiz-text-just {
+    text-align: justify;
+    max-width: 400px;
+    margin: 20px auto;
+    line-height: 140%;
+}
+.quiz-text-cent {
+    text-align: center!important;
+    font-size: 130%;
+}
+img.banner {
+    margin-bottom: 10px;
+}
+div.question {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+img.question {
+    width: 100%;
+    object-fit: contain;
+}
+.textquestion {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(0,0);
+    color: #ffffff;
+    font-size: 200%;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.textquestion>div {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+div.answers {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+div.answer {
+    width: 240px;
+    height: 224px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    font-size: 160%;
+    cursor: pointer;
+    text-align: center;
+    color: #ffffff;
+}
+img#loading {
+    width: 200px;
+    height: 200px;
+    animation: spin 2s linear infinite;
+}
+div.loading-text, div.loading-image {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+}
+div.loading-text {
+    padding-top: 35px;
+    font-size: 140%;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+div.responsive-image {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    margin: 0 auto;
+}
+div.responsive-image>img {
+    width: 100%;
+    object-fit: contain;
+}
+div.button {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+}
+div.button > button {
+    padding: 10px;
+    font-size: 130%;
+    border-radius: 10px;
+    background-color: rgb(255, 150, 4);
+    box-shadow: none;
+    border: 0;
+    color: #ffffff;
+    cursor: pointer;
+}
+div.question, div.answer, img.question, .textquestion>div, div.check {
+    border-radius: 10px;
+}
+.mouseover {
+    box-shadow: #000000 0 0 10px!important;
+}
+div.check {
+    margin: 20px 0;
+    color: #ffffff;
+    padding: 20px;
+}
+div.check > div {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 140%;
+    margin-bottom: 20px;
+    cursor: auto;
+}
+div.check > div:nth-child(2) {
+    font-size: 100%;
+}
+img.correct {
+    margin: 0 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 26px;
+}
+div.one-answer {
+    margin: 0 auto;
+}
+div.start, div.finish {
+    padding: 0 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    div.answers {
+        flex-direction: column;
+        align-items: center;
+    }
+    div.answers>div:nth-child(2) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .textquestion {
+        font-size: 160%;
+    }
+    div.answer {
+        width: 160px;
+        height: 150px;
+        background-size: cover;
+        font-size: 130%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .textquestion {
+        font-size: 130%;
+    }
+}
