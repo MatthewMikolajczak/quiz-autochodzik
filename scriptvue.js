@@ -4,7 +4,7 @@ Vue.component('todo-component', {
         return {
             view: '',
             set: 0,
-            sets: 4,
+            sets: 5,
             setSize: 10,
             questions: [],
             old_questions: [],
@@ -16,7 +16,7 @@ Vue.component('todo-component', {
             results: [],
             correct: 0,
             last_score: '',
-            banner: 'baner1.jpg'
+            banner: 'baner2.jpg'
         }
     },
     methods: {
@@ -97,7 +97,7 @@ Vue.component('todo-component', {
             this.last_score = this.correct + ' na ' + this.results.length;
         },
         nextSet: function() {
-            if (this.set < 4) {
+            if (this.set < this.sets) {
                 this.questions = [];
                 this.user_answers = [];
                 this.show_results = false;
@@ -108,14 +108,11 @@ Vue.component('todo-component', {
         },
         changeBanner: function() {
             switch(this.banner){
-                case 'baner1.jpg':
-                    this.banner = 'baner2.jpg';
-                    break;
                 case 'baner2.jpg':
                     this.banner = 'baner3.jpg';
                     break;
                 case 'baner3.jpg':
-                    this.banner = 'baner1.jpg';
+                    this.banner = 'baner2.jpg';
                     break;
             }
         }
